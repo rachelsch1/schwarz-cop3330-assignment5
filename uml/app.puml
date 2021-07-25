@@ -1,0 +1,14 @@
+@startuml
+class MainClass {
+
+}
+
+class list {
+
+}
+
+
+class item {
+
+}
+@enduml
