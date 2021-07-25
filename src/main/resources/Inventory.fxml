@@ -13,25 +13,24 @@
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="815.0">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Item menu">
             <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
+              <MenuItem mnemonicParsing="false" onAction="#addButtonClicked" text="Add" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Save">
             <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveAsTsvClicked" text="Save as TSV" />
+              <MenuItem mnemonicParsing="false" onAction="#saveAsHtmlClicked" text="Save as HTML" />
+                  <MenuItem mnemonicParsing="false" onAction="#saveAsJsonClicked" text="Save as JSON" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
+          <Menu mnemonicParsing="false" onAction="#loadButtonClicked" text="Load" />
         </menus>
       </MenuBar>
-      <TextField fx:id="searchBar" layoutX="14.0" layoutY="36.0" prefHeight="25.0" prefWidth="331.0" promptText="search..." />
-      <TableView fx:id="table" layoutY="68.0" prefHeight="477.0" prefWidth="815.0">
+      <TextField fx:id="searchBar" layoutX="525.0" layoutY="35.0" prefHeight="25.0" prefWidth="276.0" promptText="search..." />
+      <TableView fx:id="table" layoutY="68.0" prefHeight="535.0" prefWidth="815.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="444.0" text="Name" />
           <TableColumn fx:id="colSerial" prefWidth="190.0" text="Serial" />
