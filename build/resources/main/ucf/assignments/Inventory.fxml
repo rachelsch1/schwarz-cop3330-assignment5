@@ -23,7 +23,6 @@
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#saveAsTsvClicked" text="Save as TSV" />
               <MenuItem mnemonicParsing="false" onAction="#saveAsHtmlClicked" text="Save as HTML" />
-                  <MenuItem mnemonicParsing="false" text="Save as JSON" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Load">

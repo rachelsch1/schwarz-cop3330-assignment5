@@ -113,6 +113,18 @@ public class InventoryController implements Initializable {
 
         colValue.setCellFactory(TextFieldTableCell.forTableColumn());
         colValue.setOnEditCommit(e -> {
+            try {
+                int val = Integer.parseInt(e.getNewValue());
+            } catch (NumberFormatException er) {
+                Stage dialogStage = new Stage();
+
+                VBox vbox = new VBox(new Text("ERROR: Please enter a numerical value."));
+                vbox.setAlignment(Pos.CENTER);
+                vbox.setPadding(new Insets(20));
+
+                dialogStage.setScene(new Scene(vbox));
+                dialogStage.show();
+            }
             e.getTableView().getItems().get(e.getTablePosition().getRow()).setValue(e.getNewValue());
         });
 

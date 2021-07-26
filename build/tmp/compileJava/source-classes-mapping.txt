@@ -1,8 +1,8 @@
 ucf/assignments/List.java
  ucf.assignments.List
-ucf/assignments/InventoryController.java
- ucf.assignments.InventoryController
-ucf/assignments/Item.java
- ucf.assignments.Item
 ucf/assignments/MainClass.java
  ucf.assignments.MainClass
+ucf/assignments/Item.java
+ ucf.assignments.Item
+ucf/assignments/InventoryController.java
+ ucf.assignments.InventoryController
