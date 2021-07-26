@@ -1,3 +1,5 @@
+package ucf.assignments;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -39,7 +41,7 @@ public class List {
         /*
         add new item to invList and populate vars with default values that will show in the table
          */
-        invList.add(new Item("name", "serial", 00.00));
+        invList.add(new Item("name", "XXXXXXXXXX", "00.00"));
     }
 
     public void deleteItem(Item it) {
@@ -67,16 +69,16 @@ public class List {
         writer.close();
     }
 
-    public void createHTMLFile() throws IOException {
+   // public void createHTMLFile() throws IOException {
         /*
-        create new text file using the directory string
+        create new html file using the directory string
         the file's name is the list's title
         create filewriter
         call write for title
-        loop thru items and print desc, date, and status on a line separated by commas
+        loop thru items and print name, serial, and value on a line separated by commas
         close writer
          */
-        File file = new File(directory + title + ".txt");
+       /* File file = new File(directory + "inventory" + ".html");
         FileWriter writer = new FileWriter(file);
 
         for(Item it : itemList) {
@@ -85,9 +87,9 @@ public class List {
         }
 
         writer.close();
-    }
+    }*/
 
-    public void createJSONFile() throws IOException {
+    //public void createJSONFile() throws IOException {
         /*
         create new text file using the directory string
         the file's name is the list's title
@@ -96,7 +98,7 @@ public class List {
         loop thru items and print desc, date, and status on a line separated by commas
         close writer
          */
-        File file = new File(directory + title + ".txt");
+     /*   File file = new File(directory + title + ".txt");
         FileWriter writer = new FileWriter(file);
 
         for(Item it : itemList) {
@@ -105,5 +107,5 @@ public class List {
         }
 
         writer.close();
-    }
+    }*/
 }

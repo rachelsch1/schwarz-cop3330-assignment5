@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -8,12 +9,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="602.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="InventoryController">
+<AnchorPane prefHeight="602.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucf.assignments.InventoryController">
    <children>
       <MenuBar layoutY="2.0" prefHeight="25.0" prefWidth="815.0">
         <menus>
-          <Menu mnemonicParsing="false" text="Item menu">
+          <Menu mnemonicParsing="false" text="Item">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addButtonClicked" text="Add" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteButtonClicked" text="Delete" />
@@ -22,14 +22,14 @@
           <Menu mnemonicParsing="false" text="Save">
             <items>
                   <MenuItem mnemonicParsing="false" onAction="#saveAsTsvClicked" text="Save as TSV" />
-              <MenuItem mnemonicParsing="false" onAction="#saveAsHtmlClicked" text="Save as HTML" />
-                  <MenuItem mnemonicParsing="false" onAction="#saveAsJsonClicked" text="Save as JSON" />
+              <MenuItem mnemonicParsing="false" text="Save as HTML" />
+                  <MenuItem mnemonicParsing="false" text="Save as JSON" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" onAction="#loadButtonClicked" text="Load" />
         </menus>
       </MenuBar>
-      <TextField fx:id="searchBar" layoutX="525.0" layoutY="35.0" prefHeight="25.0" prefWidth="276.0" promptText="search..." />
+      <TextField fx:id="searchBar" layoutX="525.0" layoutY="35.0" onAction="#searchUsed" prefHeight="25.0" prefWidth="276.0" promptText="search..." />
       <TableView fx:id="table" layoutY="68.0" prefHeight="535.0" prefWidth="815.0">
         <columns>
           <TableColumn fx:id="colName" prefWidth="444.0" text="Name" />
@@ -37,5 +37,6 @@
             <TableColumn fx:id="colValue" prefWidth="180.0" text="Value (US $)" />
         </columns>
       </TableView>
+      <Button layoutX="461.0" layoutY="35.0" mnemonicParsing="false" onAction="#showAllButtonClicked" text="Show all" />
    </children>
 </AnchorPane>

@@ -1,13 +1,14 @@
+package ucf.assignments;
+
 public class Item {
     /*
     has strings "name" and "serial"
     has double "value"
      */
 
-    String name, serial;
-    Double value;
+    String name, serial, value;
 
-    public Item(String name, String serial, Double value) {
+    public Item(String name, String serial, String value) {
         /*
         using "this:
             set name
@@ -47,14 +48,14 @@ public class Item {
         this.serial = serial;
     }
 
-    public Double getValue() {
+    public String getValue() {
         /*
         returns value
          */
         return value;
     }
 
-    public void setValue(Double value) {
+    public void setValue(String value) {
         /*
         set value
          */
