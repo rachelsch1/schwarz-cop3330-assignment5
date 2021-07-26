@@ -2,8 +2,6 @@ package ucf.assignments;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,9 +15,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -89,9 +87,6 @@ public class InventoryController implements Initializable {
         });
 
         colSerial.setCellFactory(TextFieldTableCell.forTableColumn());
-        /*colSerial.setOnEditCommit(e -> {
-            e.getTableView().getItems().get(e.getTablePosition().getRow()).setSerial(e.getNewValue());
-        });*/
         colSerial.setOnEditCommit(e -> {
             int flag = 0;
             for(Item it : list.invList) {
@@ -99,8 +94,6 @@ public class InventoryController implements Initializable {
                     flag = 1;
                 }
             }
-
-
 
             if(flag == 0) {
                 e.getTableView().getItems().get(e.getTablePosition().getRow()).setSerial(e.getNewValue());
@@ -114,7 +107,6 @@ public class InventoryController implements Initializable {
 
                 dialogStage.setScene(new Scene(vbox));
                 dialogStage.show();
-
             }
 
         });
@@ -149,7 +141,7 @@ public class InventoryController implements Initializable {
     void deleteButtonClicked(ActionEvent event) {
         /*
         remove row from tableview
-        call ucf.assignments.List.deleteItem, pass description
+        call list.deleteItem, pass selected item
          */
         Item it = table.getSelectionModel().getSelectedItem();
         table.getItems().removeAll(it);
@@ -157,8 +149,55 @@ public class InventoryController implements Initializable {
     }
 
     @FXML
-    void loadButtonClicked(ActionEvent event) {
+    void loadTSVButtonClicked(ActionEvent event) throws FileNotFoundException {
+        /*
+        prompt user for directory:
+        create new text input dialog
+        set title of text input dialog
+        set content of input dialog to "please input directory"
+        set field as string and show and wait
 
+        collect input
+        call list.loadInventoryTSV to open and read the file
+        set items as the updated invList
+         */
+        TextInputDialog textInput = new TextInputDialog();
+        textInput.setTitle("Load inventory");
+        textInput.getDialogPane().setContentText("Please input directory, including file name and extension:");
+
+        Optional<String> result = textInput.showAndWait();
+
+        TextField input = textInput.getEditor();
+
+        list.loadInventoryTSV(input.getText());
+
+        table.setItems(list.invList);
+    }
+
+    @FXML
+    void loadHTMLButtonClicked(ActionEvent event) throws FileNotFoundException {
+        /*
+        prompt user for directory:
+        create new text input dialog
+        set title of text input dialog
+        set content of input dialog to "please input directory"
+        set field as string and show and wait
+
+        collect input
+        call list.loadInventoryHTML to open and read the file
+        set items as the updated invList
+         */
+        TextInputDialog textInput = new TextInputDialog();
+        textInput.setTitle("Load inventory");
+        textInput.getDialogPane().setContentText("Please input directory, including file name and extension:");
+
+        Optional<String> result = textInput.showAndWait();
+
+        TextField input = textInput.getEditor();
+
+        list.loadInventoryHTML(input.getText());
+
+        table.setItems(list.invList);
     }
 
     @FXML
@@ -172,8 +211,8 @@ public class InventoryController implements Initializable {
 
         create new text field and make editable
         collect user input
-        call ucf.assignments.List.setDirectory
-        call ucf.assignments.List.createHTMLFile
+        call list.setDirectory
+        call list.createHTMLFile
         */
         TextInputDialog textInput = new TextInputDialog();
         textInput.setTitle("Save list");
@@ -184,33 +223,7 @@ public class InventoryController implements Initializable {
         TextField input = textInput.getEditor();
 
         list.setDirectory(input.getText());
-        //list.createHTMLFile();
-    }
-
-    @FXML
-    void saveAsJsonClicked(ActionEvent event) throws IOException {
-        /* (save current list)
-        prompt user for directory:
-        create new text input dialog
-        set title of text input dialog
-        set content of input dialog to "please input directory"
-        set field as string and show and wait
-
-        create new text field and make editable
-        collect user input
-        call ucf.assignments.List.setDirectory
-        call ucf.assignments.List.createJSONFile
-        */
-        TextInputDialog textInput = new TextInputDialog();
-        textInput.setTitle("Save list");
-        textInput.getDialogPane().setContentText("Please input directory:");
-
-        Optional<String> result = textInput.showAndWait();
-
-        TextField input = textInput.getEditor();
-
-        list.setDirectory(input.getText());
-        //list.createJSONFile();
+        list.createHTMLFile();
     }
 
     @FXML
@@ -224,11 +237,11 @@ public class InventoryController implements Initializable {
 
         create new text field and make editable
         collect user input
-        call ucf.assignments.List.setDirectory
-        call ucf.assignments.List.createTSVFile
+        call list.setDirectory
+        call list.createTSVFile
         */
         TextInputDialog textInput = new TextInputDialog();
-        textInput.setTitle("Save list");
+        textInput.setTitle("Save inventory");
         textInput.getDialogPane().setContentText("Please input directory:");
 
         Optional<String> result = textInput.showAndWait();
@@ -241,25 +254,26 @@ public class InventoryController implements Initializable {
 
     @FXML
     void searchUsed(ActionEvent event) {
+        /*
+        create new observable list
+        get text from search bar
+        set searchList equal to list.search and pass txt
+        display searchList in table
+         */
+
         ObservableList<Item> searchList = FXCollections.observableArrayList();
 
         String txt = searchBar.getText();
-
-        for(Item it : list.invList) {
-            if(it.getName().contains(txt)) {
-                searchList.add(it);
-            } else if(it.getSerial().contains(txt)) {
-                searchList.add(it);
-            } else if(it.getValue().contains(txt)) {
-                searchList.add(it);
-            }
-        }
+        searchList = list.search(txt);
 
         table.setItems(searchList);
     }
 
     @FXML
     void showAllButtonClicked(ActionEvent event) {
+        /*
+        set table items as list.invList
+         */
         table.setItems(list.invList);
     }
 }

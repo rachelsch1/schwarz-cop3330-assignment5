@@ -14,9 +14,6 @@ public class MainClass extends Application {
 
 
     public static void main(String[] args) {
-        /*
-        create todolist
-         */
         launch(args);
 
     }

@@ -1,9 +1,14 @@
 package ucf.assignments;
 
+/*
+ *  UCF COP3330 Summer 2021 Assignment 5 Solution
+ *  Copyright 2021 Rachel Schwarz
+ */
+
+
 public class Item {
     /*
-    has strings "name" and "serial"
-    has double "value"
+    has strings "name", "serial", and "value"
      */
 
     String name, serial, value;

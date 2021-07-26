@@ -1,14 +1,59 @@
 @startuml
 class MainClass {
-
+    main()
+    start()
 }
 
-class list {
+class List {
+    directory: String
+    invList: ObservableList<Item>
 
+    List()
+    getDirectory()
+    setDirectory()
+    addItem()
+    deleteItem()
+    createTSVFile()
+    createHTMLFile()
+    loadInventoryTSV()
+    loadInventoryHTML()
 }
 
 
-class item {
+class Item {
+    name: String
+    serial: String
+    value: String
 
+    getName()
+    setName()
+    getSerial()
+    setSerial()
+    getValue()
+    setValue()
 }
+
+class InventoryController {
+    list: List
+
+    initialize()
+    initTable()
+    initCols()
+    editTableCols()
+    loadData()
+    addButtonClicked()
+    deleteButtonClicked()
+    loadTSVButtonClicked()
+    loadHTMLButtonClicked()
+    saveAsHTMLClicked()
+    saveAsTSVClicked()
+    searchUsed()
+    showAllButtonClicked()
+}
+
+javafx.Application <|-- MainClass
+MainClass <|-- List
+List -- InventoryController
+List - Item
+
 @enduml
