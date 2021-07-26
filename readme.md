@@ -7,7 +7,7 @@ Adding an item will create a new row in the list with default values.
 To edit the values, simply double click the table cell you wish to edit and it will become an editable text box.
 Incorrect formatting will yield errors:
     serial codes must only consist of letters and numbers,
-    suplicate serial codes are not permitted,
+    duplicate serial codes are not permitted,
     and values must be numerical.
 
 To search for items, click the search bar in the top right.
