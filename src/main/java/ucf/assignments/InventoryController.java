@@ -73,10 +73,12 @@ public class InventoryController implements Initializable {
          serial:
          set cell as text field
          set value as user input
+         handle unique requirement
 
          value:
          set cell as text field
          set value as user input
+         handle numerical formatting
 
          set table info to editable
          */
